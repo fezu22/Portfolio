@@ -1,0 +1,355 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+  --red: #C0152A;
+  --red-dark: #8B0F1E;
+  --gold: #D4A017;
+  --gold-light: #F5D060;
+  --gold-shine: #FFE88A;
+  --pink-soft: #FFF0F3;
+  --pink-mid: #FFD6DF;
+  --text: #1A1010;
+  --text-muted: #7A6060;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: #FDF8F8;
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* Noise texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.4;
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, var(--red) 0%, var(--gold) 50%, var(--gold-shine) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-red-gold {
+  background: linear-gradient(135deg, var(--red), var(--gold));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   PREMIUM GLOWING MORPHING RING
+   Luxury holographic effect for profile images
+   ============================================ */
+
+/* Main Morphing Ring - Smooth organic shape changes with intense glow */
+@keyframes glowingRingMorph {
+  0% { 
+    border-radius: 75% 25% 70% 30% / 40% 50% 50% 60%;
+    box-shadow: 
+      0 0 40px -6px rgba(192, 21, 42, 1),
+      0 0 70px -2px rgba(212, 160, 23, 0.85),
+      0 0 100px 4px rgba(255, 182, 193, 0.65),
+      0 0 140px 12px rgba(212, 160, 23, 0.45),
+      0 0 200px 20px rgba(192, 21, 42, 0.25),
+      inset 0 0 30px 0px rgba(212, 160, 23, 0.65),
+      inset 0 0 20px -4px rgba(255, 255, 255, 0.5);
+  }
+  
+  12.5% { 
+    border-radius: 50% 50% 65% 35% / 55% 45% 55% 45%;
+    box-shadow: 
+      0 0 45px -5px rgba(192, 21, 42, 1.1),
+      0 0 75px 0px rgba(212, 160, 23, 0.9),
+      0 0 105px 6px rgba(255, 182, 193, 0.7),
+      0 0 150px 14px rgba(212, 160, 23, 0.5),
+      0 0 210px 22px rgba(192, 21, 42, 0.28),
+      inset 0 0 33px 1px rgba(212, 160, 23, 0.7),
+      inset 0 0 23px -2px rgba(255, 255, 255, 0.55);
+  }
+  
+  25% { 
+    border-radius: 42% 58% 50% 50% / 65% 40% 60% 35%;
+    box-shadow: 
+      0 0 50px -4px rgba(192, 21, 42, 1.15),
+      0 0 80px 2px rgba(212, 160, 23, 0.95),
+      0 0 110px 8px rgba(255, 182, 193, 0.75),
+      0 0 160px 16px rgba(212, 160, 23, 0.55),
+      0 0 220px 24px rgba(192, 21, 42, 0.3),
+      inset 0 0 36px 2px rgba(212, 160, 23, 0.75),
+      inset 0 0 26px 0px rgba(255, 255, 255, 0.6);
+  }
+  
+  37.5% { 
+    border-radius: 60% 40% 58% 42% / 45% 60% 40% 60%;
+    box-shadow: 
+      0 0 45px -5px rgba(192, 21, 42, 1.1),
+      0 0 75px 0px rgba(212, 160, 23, 0.9),
+      0 0 105px 6px rgba(255, 182, 193, 0.7),
+      0 0 150px 14px rgba(212, 160, 23, 0.5),
+      0 0 210px 22px rgba(192, 21, 42, 0.28),
+      inset 0 0 33px 1px rgba(212, 160, 23, 0.7),
+      inset 0 0 23px -2px rgba(255, 255, 255, 0.55);
+  }
+  
+  50% { 
+    border-radius: 70% 30% 48% 52% / 50% 50% 50% 50%;
+    box-shadow: 
+      0 0 52px -3px rgba(192, 21, 42, 1.2),
+      0 0 85px 4px rgba(212, 160, 23, 1),
+      0 0 115px 10px rgba(255, 182, 193, 0.8),
+      0 0 170px 18px rgba(212, 160, 23, 0.6),
+      0 0 230px 26px rgba(192, 21, 42, 0.32),
+      inset 0 0 40px 3px rgba(212, 160, 23, 0.8),
+      inset 0 0 28px 1px rgba(255, 255, 255, 0.65);
+  }
+  
+  62.5% { 
+    border-radius: 48% 52% 60% 40% / 40% 65% 35% 65%;
+    box-shadow: 
+      0 0 48px -4px rgba(192, 21, 42, 1.12),
+      0 0 78px 2px rgba(212, 160, 23, 0.92),
+      0 0 108px 8px rgba(255, 182, 193, 0.72),
+      0 0 155px 16px rgba(212, 160, 23, 0.52),
+      0 0 215px 24px rgba(192, 21, 42, 0.28),
+      inset 0 0 34px 2px rgba(212, 160, 23, 0.68),
+      inset 0 0 24px 0px rgba(255, 255, 255, 0.52);
+  }
+  
+  75% { 
+    border-radius: 58% 42% 52% 48% / 55% 45% 55% 45%;
+    box-shadow: 
+      0 0 44px -5px rgba(192, 21, 42, 1.05),
+      0 0 72px 0px rgba(212, 160, 23, 0.87),
+      0 0 102px 5px rgba(255, 182, 193, 0.67),
+      0 0 142px 13px rgba(212, 160, 23, 0.46),
+      0 0 195px 21px rgba(192, 21, 42, 0.22),
+      inset 0 0 31px 1px rgba(212, 160, 23, 0.62),
+      inset 0 0 21px -1px rgba(255, 255, 255, 0.47);
+  }
+  
+  87.5% { 
+    border-radius: 52% 48% 68% 32% / 45% 55% 45% 55%;
+    box-shadow: 
+      0 0 40px -6px rgba(192, 21, 42, 0.98),
+      0 0 68px -1px rgba(212, 160, 23, 0.82),
+      0 0 98px 3px rgba(255, 182, 193, 0.62),
+      0 0 133px 11px rgba(212, 160, 23, 0.4),
+      0 0 185px 19px rgba(192, 21, 42, 0.2),
+      inset 0 0 28px 0px rgba(212, 160, 23, 0.58),
+      inset 0 0 18px -3px rgba(255, 255, 255, 0.42);
+  }
+  
+  100% { 
+    border-radius: 75% 25% 70% 30% / 40% 50% 50% 60%;
+    box-shadow: 
+      0 0 40px -6px rgba(192, 21, 42, 1),
+      0 0 70px -2px rgba(212, 160, 23, 0.85),
+      0 0 100px 4px rgba(255, 182, 193, 0.65),
+      0 0 140px 12px rgba(212, 160, 23, 0.45),
+      0 0 200px 20px rgba(192, 21, 42, 0.25),
+      inset 0 0 30px 0px rgba(212, 160, 23, 0.65),
+      inset 0 0 20px -4px rgba(255, 255, 255, 0.5);
+  }
+}
+
+/* Rotating Light Sweep - Creates moving shimmer around the ring */
+@keyframes ringLightSweep {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Edge Highlight Animation - Pulsing bright edge */
+@keyframes ringEdgeGlow {
+  0%, 100% { 
+    filter: blur(2px);
+    opacity: 0.8;
+  }
+  50% { 
+    filter: blur(1px);
+    opacity: 1;
+  }
+}
+
+/* Far Halo Breathing - Outer ambient glow expands/contracts */
+@keyframes haloFarBreathe {
+  0%, 100% { 
+    opacity: 0.4;
+    transform: scale(1);
+    filter: blur(10px);
+  }
+  50% { 
+    opacity: 0.7;
+    transform: scale(1.08);
+    filter: blur(18px);
+  }
+}
+
+/* Mid Halo Pulsing - Secondary ambient glow */
+@keyframes haloMidPulse {
+  0%, 100% { 
+    opacity: 0.5;
+    filter: blur(12px);
+  }
+  50% { 
+    opacity: 0.85;
+    filter: blur(20px);
+  }
+}
+
+/* Inner Glow Neon - Vibrant inner glow effect */
+@keyframes innerGlowVibrant {
+  0%, 100% { 
+    opacity: 0.6;
+    filter: blur(8px);
+  }
+  50% { 
+    opacity: 0.95;
+    filter: blur(12px);
+  }
+}
+
+/* Apply all animations to ring elements */
+.glowing-morph-ring {
+  animation: glowingRingMorph 14s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+}
+
+.glowing-ring-light-sweep {
+  animation: ringLightSweep 10s linear infinite;
+  transform-origin: center;
+}
+
+.glowing-ring-edge {
+  animation: ringEdgeGlow 4s ease-in-out infinite;
+}
+
+.glowing-ring-halo-far {
+  animation: haloFarBreathe 10s ease-in-out infinite;
+}
+
+.glowing-ring-halo-mid {
+  animation: haloMidPulse 12s 0.8s ease-in-out infinite;
+}
+
+.glowing-ring-inner {
+  animation: innerGlowVibrant 8s 0.4s ease-in-out infinite;
+}
+
+/* Float animation */
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+.float-anim       { animation: floatAnim 3s ease-in-out infinite; }
+.float-anim-delay { animation: floatAnim 3s 1.5s ease-in-out infinite; }
+
+/* Pulse dot */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(1.5); }
+}
+.pulse-dot { animation: pulseDot 2s infinite; }
+
+/* Reveal animation */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Shimmer button */
+.btn-shimmer::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+  transition: left 0.5s;
+}
+.btn-shimmer:hover::before { left: 100%; }
+
+/* Nav underline animation */
+.nav-link-hover {
+  position: relative;
+}
+.nav-link-hover::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  transition: width 0.3s;
+}
+.nav-link-hover:hover::after { width: 100%; }
+
+/* Project card bottom bar */
+.project-card-bar::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.project-card-bar:hover::after { transform: scaleX(1); }
+
+/* Featured ribbon */
+.featured-ribbon::before {
+  content: 'FEATURED';
+  position: absolute;
+  top: 1.5rem; right: -2.5rem;
+  background: linear-gradient(135deg, var(--red), var(--gold));
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  padding: 0.3rem 3rem;
+  transform: rotate(45deg);
+  z-index: 10;
+}
+
+/* Skill card overlay */
+.skill-overlay::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(192,21,42,0.04), rgba(212,160,23,0.06));
+  opacity: 0;
+  transition: opacity 0.3s;
+  border-radius: inherit;
+}
+.skill-overlay:hover::before { opacity: 1; }
